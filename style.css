@@ -761,3 +761,39 @@ footer{
     width: 100%;
   }
 }
+/* دکمه منوی موبایل */
+.menu-toggle {
+  display: none;
+  background: var(--gold);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* فقط در موبایل دیده شود */
+@media (max-width:700px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav.menu {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255,255,255,0.9);
+    position: absolute;
+    right: 10px;
+    top: 70px;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+
+  nav.menu.active {
+    display: flex;
+  }
+}
