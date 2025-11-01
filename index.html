@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>کافی نت آنلاین — خدمات دیجیتال روستایی</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- مودال ورود -->
+  <div id="login-modal" class="login-modal" style="display: flex;">
+    <div class="login-card">
+      <h4>ورود به کافی نت آنلاین</h4>
+      <div class="login-form">
+        <div class="form-group">
+          <label for="username">نام کاربری:</label>
+          <input type="text" id="username" placeholder="" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="password">رمز عبور:</label>
+          <input type="password" id="password" placeholder="" autocomplete="off">
+        </div>
+        <button class="login-btn" onclick="login()">ورود به سایت</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="main-content" style="display:none;">
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <div class="logo">
+            <img src="https://cdn.imgurl.ir/uploads/s86917_images_4.jpg" alt="لوگو کافی نت" class="logo-badge">
+            <div>
+              <h1>کافی نت آنلاین</h1>
+              <p>سراوان، رشت — خدمات دیجیتال روستایی</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="time-date" id="time-date">
+            <!-- زمان و تاریخ توسط جاوااسکریپت پر می‌شود -->
+          </div>
+          <button class="logout-btn" onclick="logout()">خروج</button>
+          <nav class="menu" aria-label="منو">
+            <a href="#services">خدمات</a>
+            <a href="#about">درباره ما</a>
+            <a href="#" onclick="openSurvey()">نظر سنجی</a>
+            <a href="#contact">تماس با ما</a>
+          </nav>
+        </div>
+      </div>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <main class="container">
+      <!-- Hero -->
+      <section class="hero" id="about">
+        <div class="hero-card">
+          <div class="hero-left">
+            <h2>به کافی نت آنلاین خوش آمدید — قلبِ دیجیتالِ سراوان</h2>
+            <p>ما باور داریم که در دنیای امروز، فاصله‌ها معنایی ندارد و هرکس در هر نقطه‌ای باید به امکانات روز دسترسی داشته باشد. کافی نت آنلاین پلی است میان سنت و فناوری برای خدمت به کشاورزان، دانش‌آموزان، هنرمندان و همهٔ عزیزان روستا.</p>
+            <div class="meta">
+              <div class="chip">ماموریت: خدمات اینترنتی، کامپیوتری و آموزشی</div>
+            </div>
+          </div>
+
+          <aside class="hero-right">
+            <!-- کارت لوگو و شماره -->
+            <div class="info-card">
+              <div class="info-header">
+                <div class="info-logo">
+                  <img src="https://cdn.imgurl.ir/uploads/s86917_images_4.jpg" alt="لوگو کافی نت" class="logo-badge">
+                  <div>
+                    <div class="site-name">کافی نت آنلاین</div>
+                    <div class="site-version">مدیریت: سید علی چهارسوقی</div>
+                  </div>
+                </div>
+                <div class="phone-info">
+                  <div class="phone-number">09029191722</div>
+                  <div class="phone-label">واتساپ / تماس</div>
+                </div>
+              </div>
+              
+              <!-- دکمه نظر سنجی -->
+              <button onclick="openSurvey()" class="survey-btn">شرکت در نظر‌سنجی</button>
+              <style>
+                /* کانتینر دکمه‌های ویژه */
+                .special-buttons {
+                    display: flex;
+                    flex-wrap: wrap; /* وقتی کمبود فضا بود، به خط بعد می‌روند */
+                    justify-content: center; /* وسط چین شدن دکمه‌ها */
+                    gap: 10px; /* فاصله بین دکمه‌ها */
+                    padding: 20px;
+                }
+                
+                /* سبک پایه برای دکمه‌ها و لینک‌ها */
+                .special {
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                }
+                
+                /* ریسپانسیو موبایل */
+                @media screen and (max-width: 768px) {
+                    .special-buttons {
+                        flex-direction: column; /* دکمه‌ها ستونی شوند */
+                        align-items: center; /* وسط صفحه قرار بگیرند */
+                    }
+                    .special {
+                        width: 90%; /* تقریباً تمام عرض موبایل */
+                        max-width: 350px;
+                        font-size: 18px; /* کمی بزرگ‌تر برای موبایل */
+                        margin: 5px 0; /* فاصله عمودی */
+                    }
+                }
+                </style>
+                
+                <div class="special-buttons">
+                    <button class="special gold" onclick="openPoliceModal()">کلانتری سراوان رشت</button>
+                    <button class="special caramel" onclick="openDehyariModal()">دهیاری سراوان</button>
+                    <button class="special" style="background: linear-gradient(180deg, #2E8B57, #228B22); color: white;" onclick="openShoraModal()">شورای شهر</button>
+                    <a href="https://www.leader.ir/" target="_blank" class="special" style="background: linear-gradient(180deg, #2E8B57, #228B22); color: white;">
+                      درخواست از رهبری
+                    </a>
+                    <a href="https://111.ir/" target="_blank" class="special" style="background: linear-gradient(180deg, #828b2e, #228B22); color: white;">
+                      درخواست از ریس جمهور
+                    </a>
+                </div>
+                     
+        
+        </aside>
+        </div>
+      </section>
+
+      <!-- موقعیت مکانی -->
+      <div class="location">
+        <p>استان گیلان، شهرستان رشت، بخش سنگر، روستای سراوان</p>
+      </div>
+
+<!-- نقشه گوگل -->
+<div class="map-container">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12971.51350447845!2d49.65192697269159!3d37.08426785812626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1641234567890!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+      <!-- Services — گروه بندی شده -->
+      <section id="services" class="services-section">
+        <div class="services">
+          <!-- نمونه گروه: خدمات خودرو -->
+          <div class="category">
+            <h3>خدمات خودرو</h3>
+            <div class="btn-list">
+              <button class="svc-btn" onclick="openService('https://esale.ikco.ir/#!/')"><span>ثبت نام و انتخاب اینترنتی خودرو</span><div class="svc-meta">سامانه ایران خودرو</div></button>
+              <button class="svc-btn" onclick="openService('https://nobatdehi.epolice.ir/')"><span>نوبت دهی تعویض پلاک</span><div class="svc-meta">سامانه نوبت‌دهی پلیس</div></button>
+              <button class="svc-btn" onclick="openService('https://itoll.com')"><span>استعلام خلافی خودرو</span><div class="svc-meta">استعلام و پرداخت</div></button>
+              <button class="svc-btn" onclick="openService('https://itoll.com')"><span>عوارض سالیانه خودرو</span><div class="svc-meta">پرداخت آنلاین</div></button>
+              <button class="svc-btn" onclick="openService('https://itoll.com')"><span>مالیات نقل و انتقال</span><div class="svc-meta">استعلام</div></button>
+              <button class="svc-btn" onclick="openService('https://itoll.com')"><span>پرداخت جریمه</span><div class="svc-meta">پرداخت آنلاین</div></button>
+              <button class="svc-btn" onclick="openService('https://itoll.com')"><span>پرداخت عوارض آزادراهی</span><div class="svc-meta">پرداخت آنلاین</div></button>
+              <button class="svc-btn" onclick="openService('https://itoll.com')"><span>طرح ترافیک</span><div class="svc-meta">تهران و کلانشهرها</div></button>
+            </div>
+          </div>
+
+          <!-- نمونه گروه: خدمات قضایی و هویتی -->
+          <div class="category">
+            <h3>خدمات قضایی و هویتی</h3>
+            <div class="btn-list">
+              <button class="svc-btn" onclick="openService('https://sana.adliran.ir/')"><span>ثبت ثنا</span><div class="svc-meta">سامانه قضایی</div></button>
+              <button class="svc-btn" onclick="openService('https://sana.adliran.ir/')"><span>ابلاغیه</span><div class="svc-meta">دریافت ابلاغیه قضایی</div></button>
+              <button class="svc-btn" onclick="openService('https://police.ir/')"><span>سو پیشینه</span><div class="svc-meta">گواهی عدم سوء پیشینه</div></button>
+              <button class="svc-btn" onclick="openService('https://www.ncr.ir/idcard/')"><span>کارت ملی</span><div class="svc-meta">ثبت نام کارت ملی هوشمند</div></button>
+              <button class="svc-btn" onclick="openService('https://baman24.ir/pwa/auth/login/')"><span>ثبت چک صیادی</span><div class="svc-meta">ثبت و استعلام</div></button>
+              <button class="svc-btn" onclick="openService('https://idadgar.com/#/homepage/main')"><span>اظهارنامه قضایی</span><div class="svc-meta">سامانه remission</div></button>
+              <button class="svc-btn" onclick="openService('https://adliran.ir/')"><span>لایحه</span><div class="svc-meta">سامانه عدل ایران</div></button>
+              <button class="svc-btn" onclick="openContractModal('https://www.solh.ir/')"><span>نمونه قرارداد خرید فروش</span><div class="svc-meta">پرینت فرم</div></button>
+            </div>
+          </div>
+
+          <!-- نمونه گروه: خدمات مالیاتی و بوروکراسی -->
+          <div class="category">
+            <h3>مالیاتی و اداری</h3>
+            <div class="btn-list">
+              <button class="svc-btn" onclick="openService('https://www.tax.gov.ir/')"><span>ثبت نام مالیاتی – دریافت کد اقتصادی</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.tax.gov.ir/')"><span>اظهار نامه مالیاتی</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.tax.gov.ir/')"><span>پرداخت مالیات</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.sejam.ir/')"><span>سجام</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://irsherkat.ssaa.ir/')"><span>آگهی شرکت</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.tax.gov.ir/')"><span>آشنایی با کلیات قانون مالیات</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.tax.gov.ir/')"><span>کد اقتصادی</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.tax.gov.ir/')"><span>فرهنگ‌سازی مالیاتی</span><div class="svc-meta"></div></button>
+            </div>
+          </div>
+
+          <!-- گروه: آموزشی و آزمون -->
+          <div class="category">
+            <h3>آموزشی و دانشگاهی</h3>
+            <div class="btn-list">
+              <button class="svc-btn" onclick="openService('https://sanjesh.org/')"><span>کنکور — ثبت نام کنکور سراسری</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://stdn.iau.ir/')"><span>انتخاب واحد</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.medu.ir/')"><span>ثبت نام مدارس (تیزهوشان، شاهد)</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://suntype.ir/')"><span>انجام تحقیق دانشجویی</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://suntype.ir/')"><span>انجام مقاله دانشجویی</span><div class="svc-meta"></div></button>
+            </div>
+          </div>
+
+          <!-- گروه: بیمه، سلامت و رفاهی -->
+          <div class="category">
+            <h3>بیمه و سلامت</h3>
+            <div class="btn-list">
+              <button class="svc-btn" onclick="openService('https://salamat.gov.ir/')"><span>کارت واکسن — دریافت کارت واکسن دیجیتال</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://csp.ihio.gov.ir/')"><span>بیمه سلامت — صدور و تمدید</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://doctoreto.com/')"><span>نوبت دهی دکتر — سراسر کشور</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://bimeh.com/')"><span>صدور آنلاین بیمه</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://eservices.tamin.ir/')"><span>استعلام سابقه بیمه</span><div class="svc-meta"></div></button>
+            </div>
+          </div>
+
+          <!-- گروه: طراحی و خدمات چاپ -->
+          <div class="category">
+            <h3>طراحی و تبلیغات</h3>
+            <div class="btn-list">
+              <button class="svc-btn" onclick="openService('https://logonomy.ir/')"><span>لوگو — طراحی لوگو، عکس و کاور</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://tabaneshahr.com/')"><span>طراحی سایت حرفه‌ای</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://irankohan.ir/')"><span>کارت ویزیت — طراحی و چاپ</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.vmaker.com/')"><span>تدوین فیلم و کلیپ</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://irankohan.ir/')"><span>بنر تبلیغاتی — طراحی و چاپ</span><div class="svc-meta"></div></button>
+            </div>
+          </div>
+
+          <!-- گروه: سفر، بلیط و رزرو -->
+          <div class="category">
+            <h3>سفر و اقامت</h3>
+            <div class="btn-list">
+              <button class="svc-btn" onclick="openService('https://snapp.ir/')"><span>خرید بلیط — اتوبوس، قطار، هواپیما</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.jajiga.com/')"><span>رزرو اقامتگاه — ویلا، هتل، تور</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.ghoghnos.net/')"><span>تور مسافرتی داخلی</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.alibaba.ir/')"><span>تور مسافرتی داخلی ارزان</span><div class="svc-meta"></div></button>
+            </div>
+          </div>
+
+          <!-- گروه: بانکی و وام -->
+          <div class="category">
+            <h3>وام‌ها و تسهیلات</h3>
+            <div class="btn-list">
+              <button class="svc-btn" onclick="openService('https://my.mcls.gov.ir/')"><span>وام ازدواج — ثبت نام</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://saman.mrud.ir/')"><span>وام ودیعه مسکن — ثبت نام</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://ve.cbi.ir/')"><span>وام فرزندآوری — ثبت نام</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://www.zarinpal.com/')"><span>درگاه پرداخت — ثبت نام</span><div class="svc-meta"></div></button>
+            </div>
+          </div>
+
+          <!-- گروه جدید: سایر خدمات -->
+          <div class="category">
+            <h3>سایر خدمات</h3>
+            <div class="btn-list">
+              <button class="svc-btn" onclick="openService('https://ghabzino.com/')"><span>قبضینو</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://police.ir/')"><span>همیار پلیس من</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://azki.ir/')"><span>ازکی</span><div class="svc-meta"></div></button>
+              <button class="svc-btn" onclick="openService('https://shad.ir/')"><span>شاد</span><div class="svc-meta"></div></button>
+            </div>
+             </section>
+      <br>
+      <br>
+      <br>
+                <!-- گروه جدید: خذمات کلی 1 -->
+          <div class="category">
+            <h3>خدمات کلی به روز شده</h3>
+            <div class="btn-list">
+<button class="svc-btn" onclick="openService('https://iranestekhdam.ir/')"><span>ایران استخدام - آگهی‌های جدید استخدامی</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://www.writeme.ir/')"><span>ترجمه-پایان-نامه - خدمات ترجمه و نگارش پایان‌نامه</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://sahamedalat.ir/')"><span>سهام عدالت - استعلام و مشاهده وضعیت سهام</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://isignal.ir/tutorial/')"><span>فیش حقوقی بازنشستگان - مشاهده فیش حقوقی</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://irsherkat.ssaa.ir/')"><span>ثبت شرکت - خدمات ثبت شرکت‌ها</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://my.medu.ir/')"><span>دریافت حکم کارگزینی - فرهنگیان و معلمان</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://my.medu.ir/')"><span>مای مدیو - سامانه آموزش و پرورش</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://utcms.ir/')"><span>صدور و تمدید پروانه رانندگان - حمل‌ونقل عمومی</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://vcr.salamat.gov.ir/')"><span>کارت واکسن دیجیتال - دریافت کارت واکسن کرونا</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://www.behzisti.ir/')"><span>اداره بهزیستی - خدمات رفاهی و حمایتی</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://dingontime.com/')"><span>ثبت نام دستگاه کارتخوان - برای پذیرندگان</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://cafelium.ir/')"><span>کد بورسی تمام کارگزاری‌ها - دریافت سریع کد بورسی</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://irtextbook.ir/')"><span>ثبت نام کتاب درسی دانش‌آموزان - خرید اینترنتی کتاب</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://hemayat.mcls.gov.ir/')"><span>اعتراض به دهک‌بندی خانوار - بررسی یارانه</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://gnaf.post.ir/')"><span>دریافت تاییدیه کدپستی محل - از پست ملی</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://my.medu.ir/')"><span>ثبت نام مدارس تیزهوشان - دانش‌آموزان استعداد درخشان</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://www.cra.ir/')"><span>استعلام خطوط مشترکین تلفن سیار - سیم‌کارت‌های فعال</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://vazifeh.police.ir/')"><span>سامانه جامع خدمات وظیفه عمومی - اطلاعات سربازی</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://shafaf.rasht.ir/')"><span>استعلام پروانه و پایان‌کار ساختمان - شهرداری رشت</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://www.searchline.ir/')"><span>استعلام شناسه ملی اشخاص حقوقی - شرکت‌ها و موسسات</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://ict.iripo.ir/')"><span>فناوری اطلاعات - خدمات وزارت صمت</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://www.aro.gov.ir/')"><span>سازمان اداری - امور اداری و استخدامی کشور</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://hypertire.com/')"><span>ثبت نام لاستیک - سامانه خرید و سهمیه تایر</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://ict.iripo.ir/')"><span>سامانه سپامک - خدمات پیامکی سازمان تنظیم مقررات</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://www.tsetmc.com/')"><span>بورس - مشاهده لحظه‌ای بازار سرمایه</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://dadsetani.ir/')"><span>دادگستری سراسر کشور </span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://dualite.dev/')"><span>هوش مصنوعی</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://www.kimi.com/')"><span>هوش مصنوعی ساخت پاور پوینت</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://paadars.com/')"><span>سایت پادریس گام به گام </span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://konkur.in/')"><span>ازمون و جواب کنکور</span><div class="svc-meta"></div></button>
+<button class="svc-btn" onclick="openService('https://amlak.mrud.ir/')"><span> سامانه ملی املاک و اسکان کشور</span><div class="svc-meta"></div></button>       
+<button class="svc-btn" onclick="openService('https://khodnevis.mrud.ir/')"><span>سامانه خودنویس </span><div class="svc-meta"></div></button>
+</div>
+       
+      <!-- تماس و آدرس -->
+      <section id="contact" class="contact-section">
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>تماس با ما</h3>
+            <p>مالک: <strong>سید علی چهارسوقی</strong></p>
+            <p>تلفن: <strong>09029191722</strong></p>
+            <p>آدرس: استان گیلان، شهرستان رشت، بخش سنگر، روستای سراوان</p>
+            
+            <div class="social-icons">
+              <a href="https://eitaa.com/Samasanat" class="social-icon" target="_blank">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyQzIgMTcuNTIgNi40OCAyMiAxMiAyMkMxNy41MiAyMiAyMiAxNy41MiAyMiAxMkMyMiA2LjQ4IDE3LjUyIDIgMTIgMlpNMTIgMjBDNy41OCAyMCA0IDE2LjQyIDQgMTJDNCA3LjU4IDcuNTggNCAxMiA0QzE2LjQyIDQgMjAgNy41OCAyMCAxMkMyMCAxNi40MiAxNi40MiAyMCAxMiAyMFoiIGZpbGw9IiMwMDAiLz4KPHBhdGggZD0iTTEyIDZDNy41OCA2IDQgOS41OCA0IDE0QzQgMTguNDIgNy41OCAyMiAxMiAyMkMxNi40MiAyMiAyMCAxOC40MiAyMCAxNEMyMCA5LjU4IDE2LjQyIDYgMTIgNlpNMTIgMjBDOC42OSAyMCA2IDE3LjMxIDYgMTNDNiA4LjY5IDguNjkgNiAxMiA2QzE1LjMxIDYgMTggOC42OSAxOCAxM0MxOCAxNy4zMSAxNS4zMSAyMCAxMiAyMFoiIGZpbGw9IiMwMDAiLz4KPHBhdGggZD0iTTEyIDEwQzEwLjkgMTAgMTAgMTAuOSAxMCAxMkMxMCAxMy4xIDEwLjkgMTQgMTIgMTRDMTMuMSAxNCAxNCAxMy4xIDE0IDEyQzE0IDEwLjkgMTMuMSAxMCAxMiAxMFoiIGZpbGw9IiMwMDAiLz4KPC9zdmc+" alt="ایتا">
+                <span>ایتا</span>
+              </a>
+              <a href="https://web.whatsapp.com/send?phone=989029191722" class="social-icon" target="_blank">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjQ3IDYuMzdDMTUuNzIgNC42MiAxMy4zNiAzLjUgMTEuMDAgMy41QzUuOTQgMy41IDEuODggNy41NiAxLjg4IDEyLjYyQzEuODggMTQuMTIgMi4yNSAxNS41NiAyLjk0IDE2Ljg0TDIgMjJMNy4xNiAxOS4wNkM4LjQ0IDE5Ljc1IDkuODggMjAuMTIgMTEuMzggMjAuMTJDMTYuNDQgMjAuMTIgMjAuNSAxNi4wNiAyMC41IDExQzIwLjUgOC42NCAxOS4zOCA2LjI4IDE3LjQ3IDYuMzdaTTExLjM4IDE4LjEyQzEwLjA2IDE4LjEyIDguNzUgMTcuNzUgNy42MyAxNy4wNkw3LjM4IDE2Ljg4TDMuODggMTcuODhMNC44OCAxNC4zOEw0LjY5IDE0LjEyQzMuOTQgMTIuODEgMy41NiAxMS4zMSAzLjU2IDkuODhDMy41NiA2LjM4IDYuODggMy4wNiAxMS4zOCAzLjA2QzEzLjMxIDMuMDYgMTUuMTkgMy43NSAxNi42OSA0Ljk0QzE4LjE5IDYuMTMgMTkgOC4wMSAxOSA5Ljk0QzE5IDE0LjQ0IDE1Ljg4IDE4LjEyIDExLjM4IDE4LjEyWiIgZmlsbD0iIzI1QzY1MiIvPgo8cGF0aCBkPSJNMTYuMTkgMTIuODFDMTUuOTQgMTIuNTYgMTUuNDQgMTIuNDQgMTUuMTkgMTIuNTZMMTMuODEgMTMuMTlDMTMuNTYgMTMuMzEgMTMuMDYgMTMuMDYgMTIuODEgMTIuODFDMTIuNTYgMTIuNTYgMTEuODEgMTEuODEgMTEuNTYgMTEuNTZDMTEuMzEgMTEuMzEgMTEuMTkgMTAuODEgMTEuMzEgMTAuNTZMMTEuOTQgOS4xOUMxMi4wNiA4Ljk0IDExLjgxIDguNDQgMTEuNTYgOC4xOUMxMS4zMSA3Ljk0IDExLjE5IDcuOTQgMTAuOTQgNy45NEMxMC42OSA3Ljk0IDEwLjMxIDguMDYgOS45NCA4LjQ0QzkuNTYgOC44MSA4LjgxIDkuNTYgOC44MSAxMC41NkM4LjgxIDExLjU2IDkuNTYgMTIuMzEgMTAuNTYgMTIuMzFDMTEuNTYgMTIuMzEgMTIuMzEgMTMuMDYgMTMuMzEgMTMuODFDMTQuMzEgMTQuODEgMTUuMDYgMTUuNTYgMTUuOTQgMTUuNTZDMTYuODEgMTUuNTYgMTcuNTYgMTQuODEgMTcuOTQgMTQuNDRDMTguMzEgMTQuMDYgMTguNDQgMTMuNjkgMTguNDQgMTMuNDRDMTguNDQgMTMuMTkgMTguMzEgMTMuMDYgMTguMDYgMTIuODFDMTcuODEgMTIuNTYgMTYuNDQgMTMuMDYgMTYuMTkgMTIuODFaIiBmaWxsPSIjMjVDNjUyIi8+Cjwvc3ZnPgo=" alt="واتساپ">
+                <span>واتساپ</span>
+              </a>
+              <a href="https://rubika.ir/Alihatamiyam" class="social-icon" target="_blank">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyQzIgMTcuNTIgNi40OCAyMiAxMiAyMkMxNy41MiAyMiAyMiAxNy41MiAyMiAxMkMyMiA2LjQ4IDE3LjUyIDIgMTIgMlpNMTIgMjBDNy41OCAyMCA0IDE2LjQyIDQgMTJDNCA3LjU4IDcuNTggNCAxMiA0QzE2LjQyIDQgMjAgNy41OCAyMCAxMkMyMCAxNi40yIDE2LjQyIDIwIDEyIDIwWiIgZmlsbD0iIzAwMCIvPgo8cGF0aCBkPSJNMTIgNkM3LjU4IDYgNCA5LjU4IDQgMTRDNCAxOC40MiA3LjU4IDIyIDEyIDIyQzE2LjQyIDIyIDIwIDE4LjQyIDIwIDE0QzIwIDkuNTggMTYuNDIgNiAxMiA2Wk0xMiAyMEM4LjY5IDIwIDYgMTcuMzEgNiAxM0M2IDguNjkgOC42OSA2IDEyIDZDMTUuMzEgNiAxOCA4LjY5IDE4IDEzQzE4IDE3LjMxIDE1LjMxIDIwIDEyIDIwWiIgZmlsbD0iIzAwMCIvPgo8cGF0aCBkPSJNMTIgMTBDMTAuOSAxMCAxMCAxMC45IDEwIDEyQzEwIDEzLjEgMTAuOSAxNCAxMiAxNEMxMy4xIDE0IDE0IDEzLjEgMTQgMTJDMTQgMTAuOSAxMy4xIDEwIDEyIDEwWiIgZmlsbD0iIzAwMCIvPgo8L3N2Zz4=" alt="روبیکا">
+                <span>روبیکا</span>
+              </a>
+              <a href="https://t.me/Seyedalihoseyniiii" class="social-icon" target="_blank">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyQzIgMTcuNTIgNi40OCAyMiAxMiAyMkMxNy41MiAyMiAyMiAxNy41MiAyMiAxMkMyMiA2LjQ4IDE3LjUyIDIgMTIgMlpNMTYuNjQgOC44QzE2LjM0IDguNSA4LjkyIDExLjM2IDYuOCAxMi4zNEM2LjM2IDEyLjU1IDUuOSAxMi44NCA1LjkgMTMuMDRDNS45IDEzLjI0IDYuMzYgMTMuNDQgNi44IDEzLjU0QzguOTIgMTQuNTIgMTYuMzQgMTcuNCAxNi42NCAxNy43QzE2Ljk0IDE4IDE3LjM0IDE4IDE3LjU0IDE3LjdDMTcuNzQgMTcuNCAxNy43NCAxNy4xIDE3LjU0IDE2LjhDMTcuMjQgMTYuNSAxMi4wNiAxMy43NCAxMC41IDEzLjA0QzEwLjIgMTIuODQgOS45IDEyLjY0IDkuOSAxMi4zNEM5LjkgMTIuMDQgMTAuMiAxMS44NCAxMC41IDExLjY0QzEyLjA2IDEwLjk0IDE3LjI0IDguMiAxNy41NCA3LjlDMTcuNzQgNy42IDE3Ljc0IDcuMyAxNy41NCA3QzE3LjM0IDYuNyAxNi45NCA2LjcgMTYuNjQgN1oiIGZpbGw9IiMwMDhiZmYiLz4KPC9zdmc+" alt="تلگرام">
+                <span>تلگرام</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div>© کلیه حقوق این سایت محفوظ و مطابق قوانین جمهوری اسلامی ایران است.</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- مودال نظر سنجی -->
+    <div id="survey" class="survey-modal" role="dialog" aria-hidden="true">
+      <div class="survey-card">
+        <h4>نظر شما دربارهٔ خدمات کافی نت آنلاین چیست؟</h4>
+        <p style="opacity:0.9">لطفاً یک گزینه انتخاب کنید:</p>
+        <div class="opts">
+          <div class="opt" onclick="vote('عالی')">عالی</div>
+          <div class="opt" onclick="vote('خوب')">خوب</div>
+          <div class="opt" onclick="vote('متوسط')">متوسط</div>
+          <div class="opt" onclick="vote('نیاز به بهبود')">نیاز به بهبود</div>
+        </div>
+        <button class="close-btn" onclick="closeSurvey()">بستن</button>
+      </div>
+    </div>
+
+    <!-- مودال کلانتری -->
+    <div id="police-modal" class="form-modal" role="dialog" aria-hidden="true">
+      <div class="form-card">
+        <h4>فرم درخواست از کلانتری سراوان رشت</h4>
+        <form id="police-form">
+          <div class="form-group">
+            <label for="police-name">نام و نام خانوادگی:</label>
+            <input type="text" id="police-name" required>
+          </div>
+          <div class="form-group">
+            <label for="police-request-number">شماره درخواست:</label>
+            <input type="text" id="police-request-number" required>
+          </div>
+          <div class="form-group">
+            <label for="police-subject">موضوع درخواست/شکایت:</label>
+            <input type="text" id="police-subject" required>
+          </div>
+          <div class="form-group">
+            <label for="police-date">تاریخ و ساعت:</label>
+            <div class="date-time-input">
+              <input type="text" id="police-date" required>
+              <button type="button" class="auto-fill-btn" onclick="fillDateTime('police-date')">تکمیل خودکار</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="police-details">مشخصات طرف مقابل (در صورت وجود):</label>
+            <textarea id="police-details" rows="3" placeholder="نام، نام خانوادگی، کد ملی، آدرس، شماره تماس"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="police-request-text">متن کامل درخواست/شکایت:</label>
+            <textarea id="police-request-text" rows="8" required placeholder="متن درخواست خود را اینجا بنویسید..."></textarea>
+          </div>
+          <div class="form-buttons">
+            <button type="button" onclick="generatePoliceRequest()">تولید متن کامل توسط هوش مصنوعی</button>
+            <button type="button" onclick="printPoliceForm()">پرینت فرم</button>
+            <button type="button" class="close-btn" onclick="closePoliceModal()">بستن و پاک کردن فرم</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- مودال دهیاری -->
+    <div id="dehyari-modal" class="form-modal" role="dialog" aria-hidden="true">
+      <div class="form-card">
+        <h4>فرم درخواست از دهیاری سراوان</h4>
+        <form id="dehyari-form">
+          <div class="form-group">
+            <label for="dehyari-name">نام و نام خانوادگی:</label>
+            <input type="text" id="dehyari-name" required>
+          </div>
+          <div class="form-group">
+            <label for="dehyari-request-number">شماره درخواست:</label>
+            <input type="text" id="dehyari-request-number" required>
+          </div>
+          <div class="form-group">
+            <label for="dehyari-subject">موضوع درخواست:</label>
+            <input type="text" id="dehyari-subject" required>
+          </div>
+          <div class="form-group">
+            <label for="dehyari-date">تاریخ و ساعت:</label>
+            <div class="date-time-input">
+              <input type="text" id="dehyari-date" required>
+              <button type="button" class="auto-fill-btn" onclick="fillDateTime('dehyari-date')">تکمیل خودکار</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="dehyari-details">مشخصات کامل (در صورت نیاز):</label>
+            <textarea id="dehyari-details" rows="3" placeholder="آدرس دقیق، کد پستی، شماره تماس"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="dehyari-request-text">متن کامل درخواست:</label>
+            <textarea id="dehyari-request-text" rows="8" required placeholder="متن درخواست خود را اینجا بنویسید..."></textarea>
+          </div>
+          <div class="form-buttons">
+            <button type="button" onclick="generateDehyariRequest()">تولید متن کامل توسط هوش مصنوعی</button>
+            <button type="button" onclick="printDehyariForm()">پرینت فرم</button>
+            <button type="button" class="close-btn" onclick="closeDehyariModal()">بستن و پاک کردن فرم</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- مودال شورای شهر -->
+    <div id="shora-modal" class="form-modal" role="dialog" aria-hidden="true">
+      <div class="form-card">
+        <h4>فرم درخواست از شورای شهر</h4>
+        <form id="shora-form">
+          <div class="form-group">
+            <label for="shora-name">نام و نام خانوادگی:</label>
+            <input type="text" id="shora-name" required>
+          </div>
+          <div class="form-group">
+            <label for="shora-request-number">شماره درخواست:</label>
+            <input type="text" id="shora-request-number" required>
+          </div>
+          <div class="form-group">
+            <label for="shora-subject">موضوع درخواست:</label>
+            <input type="text" id="shora-subject" required>
+          </div>
+          <div class="form-group">
+            <label for="shora-date">تاریخ و ساعت:</label>
+            <div class="date-time-input">
+              <input type="text" id="shora-date" required>
+              <button type="button" class="auto-fill-btn" onclick="fillDateTime('shora-date')">تکمیل خودکار</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="shora-details">مشخصات کامل:</label>
+            <textarea id="shora-details" rows="3" placeholder="آدرس دقیق، کد پستی، شماره تماس"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="shora-request-text">متن کامل درخواست:</label>
+            <textarea id="shora-request-text" rows="8" required placeholder="متن درخواست خود را اینجا بنویسید..."></textarea>
+          </div>
+          <div class="form-buttons">
+            <button type="button" onclick="generateShoraRequest()">تولید متن کامل توسط هوش مصنوعی</button>
+            <button type="button" onclick="printShoraForm()">پرینت فرم</button>
+            <button type="button" class="close-btn" onclick="closeShoraModal()">بستن و پاک کردن فرم</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- مودال اظهارنامه قضایی -->
+    <div id="ezhar-modal" class="form-modal" role="dialog" aria-hidden="true">
+      <div class="form-card">
+        <h4>فرم اظهارنامه قضایی</h4>
+        <div id="ezhar-content" class="print-content">
+          <h3>اظهارنامه قضایی</h3>
+          <p>این اظهارنامه به استناد ماده ۱۰ قانون آیین دادرسی مدنی تنظیم شده است.</p>
+          <p><strong>شماره پرونده:</strong> _______________</p>
+          <p><strong>تاریخ:</strong> _______________</p>
+          <p><strong>شماره دادنامه:</strong> _______________</p>
+          <p><strong>نام و نام خانوادگی اظهارکننده:</strong> _______________</p>
+          <p><strong>کد ملی:</strong> _______________</p>
+          <p><strong>آدرس:</strong> _______________</p>
+          <p><strong>شماره تماس:</strong> _______________</p>
+          <p><strong>موضوع اظهارنامه:</strong> _______________</p>
+          <div class="text-area">
+            <p><strong>متن اظهارنامه:</strong></p>
+            <p>_________________________________________________________</p>
+            <p>_________________________________________________________</p>
+            <p>_________________________________________________________</p>
+            <p>_________________________________________________________</p>
+          </div>
+          <div class="signature">
+            <p>امضا: _______________</p>
+            <p>مهر و امضای دفتر: _______________</p>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button type="button" onclick="printEzharForm()">پرینت فرم</button>
+          <button type="button" class="close-btn" onclick="closeEzharModal()">بستن</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- مودال لایحه -->
+    <div id="layehe-modal" class="form-modal" role="dialog" aria-hidden="true">
+      <div class="form-card">
+        <h4>فرم لایحه</h4>
+        <div id="layehe-content" class="print-content">
+          <h3>لایحه دفاعیه</h3>
+          <p>به نام خدا</p>
+          <p><strong>شماره پرونده:</strong> _______________</p>
+          <p><strong>تاریخ:</strong> _______________</p>
+          <p><strong>شعبه دادگاه:</strong> _______________</p>
+          <p><strong>نام و نام خانوادگی طرفین:</strong> _______________</p>
+          <p><strong>موضوع پرونده:</strong> _______________</p>
+          <div class="text-area">
+            <p><strong>متن لایحه:</strong></p>
+            <p>با سلام و احترام،</p>
+            <p>این جانب به استحضار می‌رسانم که:</p>
+            <p>_________________________________________________________</p>
+            <p>_________________________________________________________</p>
+            <p>_________________________________________________________</p>
+            <p>_________________________________________________________</p>
+            <p>لذا استدعا دارد با عنایت به موارد فوق، حکم مقتضی صادر فرمایید.</p>
+          </div>
+          <div class="signature">
+            <p>با تشکر</p>
+            <p>نام و نام خانوادگی: _______________</p>
+            <p>کد ملی: _______________</p>
+            <p>تاریخ: _______________</p>
+            <p>امضا: _______________</p>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button type="button" onclick="printLayeheForm()">پرینت فرم</button>
+          <button type="button" class="close-btn" onclick="closeLayeheModal()">بستن</button>
+        </div>
+      </div>
+    </div>
+
+<!-- مودال قرارداد خرید و فروش -->
+<div id="contract-modal" class="form-modal" role="dialog" aria-hidden="true">
+  <div class="form-card">
+    <h4>نمونه قرارداد خرید و فروش</h4>
+    <div id="contract-content" class="print-content">
+      <h3>قرارداد خرید و فروش</h3>
+      <p>این قرارداد در تاریخ …………… بین طرفین زیر منعقد گردید:</p>
+      
+      <p><strong>۱. فروشنده:</strong> نام و نام خانوادگی: ………………………… شماره ملی: ………………………… نشانی: ………………………… شماره تماس: …………………………</p>
+      
+      <p><strong>۲. خریدار:</strong> نام و نام خانوادگی: ………………………… شماره ملی: ………………………… نشانی: ………………………… شماره تماس: …………………………</p>
+
+      <p><strong>ماده ۱ – موضوع قرارداد</strong></p>
+      <p>موضوع این قرارداد عبارت است از خرید و فروش ………………………… (ذکر دقیق کالا یا خدمت)، به تعداد/مقدار ………………، با مشخصات فنی و کیفی زیر:</p>
+      <p>نوع کالا/خدمت: …………………………</p>
+      <p>برند/مدل (در صورت وجود): …………………………</p>
+      <p>وضعیت ظاهری و عملکرد: …………………………</p>
+      <p>سایر توضیحات: …………………………</p>
+
+      <p><strong>ماده ۲ – مبلغ قرارداد و نحوه پرداخت</strong></p>
+      <p>مبلغ کل قرارداد برابر است با …………… تومان که خریدار متعهد می‌گردد آن را به یکی از روش‌های زیر پرداخت نماید:</p>
+      <p>پرداخت نقدی در زمان تنظیم قرارداد</p>
+      <p>پرداخت از طریق کارت بانکی یا درگاه آنلاین</p>
+      <p>پرداخت اقساطی طبق توافق طرفین (در صورت وجود، شرایط اقساط در پیوست قرارداد درج گردد)</p>
+      <p>در صورت تأخیر در پرداخت، فروشنده حق دارد نسبت به توقف ارائه خدمات یا پیگیری قانونی اقدام نماید.</p>
+
+      <p><strong>ماده ۳ – تعهدات فروشنده</strong></p>
+      <p>فروشنده متعهد می‌گردد کالا یا خدمت مورد نظر را با مشخصات توافق‌شده، سالم، کامل و بدون نقص فنی یا حقوقی ارائه نماید. در صورت بروز هرگونه ایراد یا مغایرت، فروشنده موظف است نسبت به اصلاح، تعویض یا بازپرداخت طبق توافق طرفین اقدام نماید. همچنین فروشنده موظف است اطلاعات لازم جهت استفاده صحیح از کالا یا خدمت را در اختیار خریدار قرار دهد.</p>
+
+      <p><strong>ماده ۴ – تعهدات خریدار</strong></p>
+      <p>خریدار متعهد است مبلغ قرارداد را طبق شرایط توافق‌شده پرداخت نموده و از کالا یا خدمت خریداری‌شده مطابق با دستورالعمل‌ها استفاده نماید. در صورت بروز خسارت ناشی از استفاده نادرست، مسئولیت آن بر عهده خریدار خواهد بود. خریدار موظف است در صورت نیاز به خدمات پس از فروش، با ارائه نسخه قرارداد و رسید پرداخت، اقدام نماید.</p>
+
+      <p><strong>ماده ۵ – حل اختلاف</strong></p>
+      <p>در صورت بروز اختلاف در تفسیر یا اجرای مفاد این قرارداد، طرفین تلاش خواهند کرد موضوع را از طریق مذاکره حل‌وفصل نمایند. در صورت عدم توافق، موضوع از طریق مراجع قانونی شهرستان سراوان پیگیری خواهد شد.</p>
+
+      <p>این قرارداد در دو نسخه تنظیم و به امضای طرفین رسید و هر نسخه دارای اعتبار یکسان است.</p>
+
+      <div class="signature">
+        <p>امضای فروشنده: ………………</p>
+        <p>امضای خریدار: ………………</p>
+      </div>
+        <div class="form-buttons">
+          <button type="button" onclick="printContractForm()">پرینت فرم</button>
+          <button type="button" class="close-btn" onclick="closeContractModal()">بستن</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('nav.menu');
+      menu.classList.toggle('active');
+    }
+    </script>
+    <script src="pin-protect.js"></script>
+    <script src="script.js"></script>
+
+  </body>
+  </html>
+  
